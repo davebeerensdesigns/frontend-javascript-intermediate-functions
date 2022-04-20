@@ -8,8 +8,12 @@
 // getEmailDomain("n.eeken@novi-education.nl") geeft novi-education.nl
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
-
-
+function getEmailDomain(email){
+    console.log(email.split("@")[1]);
+}
+getEmailDomain("n.eeken@novi-education.nl");
+getEmailDomain("t.mellink@novi.nl");
+getEmailDomain("a.wiersma@outlook.com");
 
 
 /* Opdracht  2 */
@@ -19,7 +23,22 @@
 // typeOfEmail("t.mellink@novi.nl") geeft geeft "Medewerker"
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
-
+function typeOfEmail(email){
+    let type;
+    let domain = (email.split("@")[1]);
+    if(domain.includes("novi-education.nl")){
+        type = "student";
+    } else if (domain.includes("novi.nl")){
+        type = "medewerker";
+    } else {
+        type = "extern";
+    }
+    return console.log(type);
+}
+typeOfEmail("n.eeken@novi-education.nl");
+typeOfEmail("t.mellink@novi.nl");
+typeOfEmail("novi.nlaapjesk@outlook.com");
+typeOfEmail("a.wiersma@outlook.com");
 
 
 /* Opdracht  3 */
@@ -34,3 +53,19 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+function checkEmailValidity(email){
+    const containsApenstaartje = email.includes('@');
+    const containsComma = email.includes(',');
+
+    const indexOfLastDot = email.lastIndexOf('.');
+    const containsNoDotAtEnd = indexOfLastDot !== email.length - 1;
+
+    return (containsApenstaartje && !containsComma && containsNoDotAtEnd);
+
+}
+
+console.log(checkEmailValidity("n.eeken@novi.nl"));
+console.log(checkEmailValidity("tessmellink@novi.nl"));
+console.log(checkEmailValidity("n.eekenanovi.nl"));
+console.log(checkEmailValidity("n.eeken@novinl."));
+console.log(checkEmailValidity("tessmellink@novi,nl"));
